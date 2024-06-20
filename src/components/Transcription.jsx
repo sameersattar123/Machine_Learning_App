@@ -1,9 +1,10 @@
 import React from 'react'
 
-const Transcription = ({textElement}) => {
+const Transcription = ({output}) => {
+  const finalText = output.map((val) => val.text) 
   return (
     <div>
-        {textElement}
+        {finalText}
     </div>
   )
 }

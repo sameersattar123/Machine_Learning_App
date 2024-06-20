@@ -2,8 +2,16 @@ import React, { useState } from "react";
 import Transcription from "./Transcription";
 import Translation from "./Translation";
 
-const Information = () => {
+const Information = ({ output }) => {
   const [tab, setTab] = useState("transcription");
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText()
+  }
+
+  const handleDownload = () => {
+
+  }
   return (
     <main className="flex-1 p-4 flex flex-col gap-3 sm:gap-4 text-center mx-auto w-full mx-w-prose pb-20 justify-center ">
       <h1 className="font-semibold text-4xl sm:text-5xl md:text-6xl whitespace-nowrap">
@@ -33,7 +41,29 @@ const Information = () => {
           Translation
         </button>
       </div>
-      {tab === "transcription"? <Transcription textElement={"sameer"} /> : <Translation />}
+      <div className="my-8 flex flex-col">
+        {tab === "transcription" ? (
+          <Transcription output={output} />
+        ) : (
+          <Translation />
+        )}
+      </div>
+      <div className="flex items-center gap-4 mx-auto ">
+        <button
+          onClick={handleCopy}
+          title="Copy"
+          className="bg-white  hover:text-blue-500 duration-200 text-blue-300 px-2 aspect-square grid place-items-center rounded"
+        >
+          <i className="fa-solid fa-copy"></i>
+        </button>
+        <button
+          onClick={handleDownload}
+          title="Download"
+          className="bg-white  hover:text-blue-500 duration-200 text-blue-300 px-2 aspect-square grid place-items-center rounded"
+        >
+          <i className="fa-solid fa-download"></i>
+        </button>
+      </div>
     </main>
   );
 };
